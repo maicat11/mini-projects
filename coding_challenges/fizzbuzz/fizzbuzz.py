@@ -1,5 +1,4 @@
 def fizzbuzz(start, stop):
-
     for i in range(start, stop + 1):
         if i % 15 == 0:
             print('FizzBuzz')
@@ -10,4 +9,4 @@ def fizzbuzz(start, stop):
         else:
             print(i)
 
-fizzbuzz(8, 16)
+fizzbuzz(1, 100)
