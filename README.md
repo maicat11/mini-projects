@@ -1,2 +1,9 @@
-# mini-projects
-This space is for tinkering and learning concepts while tinkering on data.  Some mini-projects include segmenting customer data (K-Means Clustering), Fraud Detection on credit card data (Classification on unbalanced data).  More to come!
+# MINI-projects
+This space is for learning concepts while tinkering on data.  
+
+Some mini-projects include: 
+* Segmenting customer data (K-Means Clustering), 
+* Fraud detection on credit card data (Classification on unbalanced data),  
+* Time series using RNN and ARIMA on BitCoin data set, 
+
+More to come!
