@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <link rel='stylesheet' href='/static/css/style.css'/>
+  </head>
+  <body>
+
+    <div class='title'>
+      SCRABBLE
+    </div>
+    
+    <div class="my-letters">
+      {% for letter in letters %}
+        <div class='letter'>
+          {{letter}}
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="score">
+      The score is {{score}}
+    </div>
+
+  </body>
+</html>

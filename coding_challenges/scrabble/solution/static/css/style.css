@@ -1,0 +1,37 @@
+@import url(https://fonts.googleapis.com/css?family=Oswald);
+
+body{
+  background-color: rgb(46, 101, 73);
+  color: white;
+}
+
+.my-letters {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  margin-bottom: 30px;
+}
+
+.score{
+    text-align: center;
+}
+
+.letter{
+  background-color: rgb(231, 201, 148);
+  color: black;
+  width: 50px;
+  height: 50px;
+  font-size: 24pt;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid black;
+  border-radius: 5px;
+  font-family: Oswald, sans-serif;
+  font-variant: small-caps;
+}
+
+.title {
+  margin: 30pt auto;
+  font-size: 36pt;
+  text-align: center;
+}

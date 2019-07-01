@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Game of Life!</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+  </head>
+  <body>
+
+    <div>
+      <button type="button" onClick="evolve()">Evolve!</button>
+    </div>
+
+    <script>
+
+        var myVar;
+        var active=0;
+
+       var dataset = new Array(1600) // create a 40x40 matrix
+
+       var svg = d3.select("body").append("svg")
+                   .attr("width", 800)
+                   .attr("height", 800);
+
+       svg.selectAll("rect")
+          .data(dataset) //connect array above with our svg
+          .enter().append("rect") //make a bunch of rectangles in our svg
+          //create 20px cells for every set of 40 (row)
+          .attr("y", function(d, i) { dataset[i]=0; return (i%40)*20 })
+          .attr("width", 18) //fill the 18x18 with blue later so we have white borders
+          .attr("height", 18)
+          //create 20px cells for every set of 40 (column)
+          .attr("x", function(d, i) { return Math.floor(i/40)*20; }) //same as modulo %
+          .style("fill",'blue')
+          .on("mousedown",function(d,i) {
+            if (active==1) {
+                clearInterval(myVar);
+                active=0;
+            }
+      d3.select(this).style("fill","#ff77b4"); //fill with pink and set to 1
+      dataset[i]=1;
+    });
+
+     function getnextframe(){
+       $.ajax({
+         type: "POST",
+         contentType: "application/json; charset=utf-8",
+         url: "/gof",
+         dataType: "json",
+         async: true,
+         data: "{\"grid\": ["+dataset+"]}", // grid is key, dataset is 0/1 matrix
+         success: function (d) { //runs every time the POST is successfully responded to via Flask
+                      if (d.change==0) { //shuts things down
+                        clearInterval(myVar); //don't refresh
+                        active=0;
+                      }
+            // otherwise, select rectangles and change colors if cells are born or die          
+            dataset=d.grid
+           svg.selectAll("rect")
+              .data(dataset)
+              .style("fill",function(d) {if (d==1) {return 'red';} else {return 'blue';}});
+         }
+       })
+     }
+
+     function evolve() {
+      active=1;
+       myVar = setInterval(getnextframe, 1000);
+      }
+    </script>
+
+  </body>
+</html>
